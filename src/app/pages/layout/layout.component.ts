@@ -114,9 +114,9 @@ export class LayoutComponent implements OnInit{
 
   public onSignOut(){
     this.router.navigate(['/']);
-    // localStorage.removeItem('userData');
-    // localStorage.removeItem('token');
-    // localStorage.removeItem('isLoggedIn')
+    localStorage.removeItem('userData');
+    localStorage.removeItem('token');
+    localStorage.removeItem('isLoggedIn')
   }
 
 
