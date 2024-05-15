@@ -1,0 +1,213 @@
+<div class="row">
+  <div class="col-12 mb-4 mt-5 text-end">
+    <button
+      type="button"
+      class="btn btn-success btn-sm"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+    >
+      Create New Project
+    </button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-3 mb-4 mt-5" *ngFor="let data of datas">
+    <div class="card">
+      <div class="card-header bg-success">
+        {{ data.shortName }}
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-6">
+            {{ data.projectName }}
+          </div>
+          <div class="col-6">
+            {{ data.createdAt | date : "dd-MM-YYYY" }}
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="row">
+          <div class="col-6">
+            <button class="btn btn-success btn-sm"  data-bs-toggle="modal" data-bs-target="#exampleModal11" (click)="onEdit(data._id)">Edit</button>
+          </div>
+          <div class="col-6">
+            <button class="btn btn-danger btn-sm" (click)="onDelete(data._id)">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Project</h5>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="projectForm" (ngSubmit)="onProjectSave()">
+          <label class="form-label" for="form3Example3">Project Id</label>
+          <div data-mdb-input-init class="form-outline mb-4">
+            <input
+              type="text"
+              formControlName="projectId"
+              class="form-control"
+              name="projectId"
+              placeholder="Enter  projectId "
+              required=""
+              [ngClass]="{ 'is-invalid': submitted && f.projectId.errors }"
+            />
+            <span
+              *ngIf="submitted && f.projectId.errors"
+              class="invalid-feedback"
+            >
+            </span>
+          </div>
+
+          <label class="form-label" for="form3Example4">Project Name</label>
+          <div data-mdb-input-init class="form-outline mb-3">
+            <input
+              type="text"
+              formControlName="projectName"
+              class="form-control"
+              name="projectName"
+              placeholder="Enter projectName"
+              required=""
+              [ngClass]="{ 'is-invalid': submitted && f.projectName.errors }"
+            />
+            <span
+              *ngIf="submitted && f.projectName.errors"
+              class="invalid-feedback"
+            >
+            </span>
+          </div>
+
+          <label class="form-label" for="form3Example4">Short Name</label>
+          <div data-mdb-input-init class="form-outline mb-3">
+            <input
+              type="text"
+              formControlName="shortName"
+              class="form-control"
+              name="shortName"
+              placeholder="Enter shortName"
+              required=""
+              [ngClass]="{ 'is-invalid': submitted && f.shortName.errors }"
+            />
+            <span
+              *ngIf="submitted && f.shortName.errors"
+              class="invalid-feedback"
+            >
+            </span>
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div
+  class="modal fade"
+  id="exampleModal11"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel11"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel11">Update Project</h5>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="projectUpdateForm" (ngSubmit)="onProjectUpdate()">
+          <label class="form-label" for="form3Example3">Project Id</label>
+          <div data-mdb-input-init class="form-outline mb-4">
+            <input
+              type="text"
+              formControlName="projectId"
+              class="form-control"
+              name="projectId"
+              placeholder="Enter  projectId "
+              required=""
+              [ngClass]="{ 'is-invalid': submitted && f.projectId.errors }"
+            />
+            <span
+              *ngIf="submitted && f.projectId.errors"
+              class="invalid-feedback"
+            >
+            </span>
+          </div>
+
+          <label class="form-label" for="form3Example4">Project Name</label>
+          <div data-mdb-input-init class="form-outline mb-3">
+            <input
+              type="text"
+              formControlName="projectName"
+              class="form-control"
+              name="projectName"
+              placeholder="Enter projectName"
+              required=""
+              [ngClass]="{ 'is-invalid': submitted && f.projectName.errors }"
+            />
+            <span
+              *ngIf="submitted && f.projectName.errors"
+              class="invalid-feedback"
+            >
+            </span>
+          </div>
+
+          <label class="form-label" for="form3Example4">Short Name</label>
+          <div data-mdb-input-init class="form-outline mb-3">
+            <input
+              type="text"
+              formControlName="shortName"
+              class="form-control"
+              name="shortName"
+              placeholder="Enter shortName"
+              required=""
+              [ngClass]="{ 'is-invalid': submitted && f.shortName.errors }"
+            />
+            <span
+              *ngIf="submitted && f.shortName.errors"
+              class="invalid-feedback"
+            >
+            </span>
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary">Update changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,213 @@
+<div class="row">
+    <div class="col-12 mb-4 mt-5 text-end">
+      <button
+        type="button"
+        class="btn btn-success btn-sm"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+      >
+        Create New user
+      </button>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-3 mb-4 mt-5" *ngFor="let data of datas">
+      <div class="card">
+        <div class="card-header bg-success">
+          {{ data.password }}
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-6">
+              {{ data.email }}
+            </div>
+            <div class="col-6">
+              {{ data.createdAt | date : "dd-MM-YYYY" }}
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="row">
+            <div class="col-6">
+              <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal1" (click)="onEdit(data._id)">Edit</button>
+            </div>
+            <div class="col-6">
+              <button class="btn btn-danger btn-sm" (click)="onDelete(data._id)">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="userForm" (ngSubmit)="onUserSave()">
+            <label class="form-label" for="form3Example3">User Name</label>
+            <div data-mdb-input-init class="form-outline mb-4">
+              <input
+                type="text"
+                formControlName="userName"
+                class="form-control"
+                name="userName"
+                placeholder="Enter userName "
+                required=""
+                [ngClass]="{ 'is-invalid': submitted && f.userName.errors }"
+              />
+              <span
+                *ngIf="submitted && f.userName.errors"
+                class="invalid-feedback"
+              >
+              </span>
+            </div>
+  
+            <label class="form-label" for="form3Example4">Email</label>
+            <div data-mdb-input-init class="form-outline mb-3">
+              <input
+                type="text"
+                formControlName="email"
+                class="form-control"
+                name="email"
+                placeholder="Enter email"
+                required=""
+                [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+              />
+              <span
+                *ngIf="submitted && f.email.errors"
+                class="invalid-feedback"
+              >
+              </span>
+            </div>
+  
+            <label class="form-label" for="form3Example4">Password</label>
+            <div data-mdb-input-init class="form-outline mb-3">
+              <input
+                type="text"
+                formControlName="password"
+                class="form-control"
+                name="password"
+                placeholder="Enter password"
+                required=""
+                [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+              />
+              <span
+                *ngIf="submitted && f.password.errors"
+                class="invalid-feedback"
+              >
+              </span>
+            </div>
+  
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="modal fade"
+    id="exampleModal1"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="userUpdateForm" (ngSubmit)="onUserUpdate()">
+            <label class="form-label" for="form3Example3">User Name</label>
+            <div data-mdb-input-init class="form-outline mb-4">
+              <input
+                type="text"
+                formControlName="userName"
+                class="form-control"
+                name="userName"
+                placeholder="Enter userName "
+                required=""
+                [ngClass]="{ 'is-invalid': submitted && f.userName.errors }"
+              />
+              <span
+                *ngIf="submitted && f.userName.errors"
+                class="invalid-feedback"
+              >
+              </span>
+            </div>
+  
+            <label class="form-label" for="form3Example4">Email</label>
+            <div data-mdb-input-init class="form-outline mb-3">
+              <input
+                type="text"
+                formControlName="email"
+                class="form-control"
+                name="email"
+                placeholder="Enter email"
+                required=""
+                [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+              />
+              <span
+                *ngIf="submitted && f.email.errors"
+                class="invalid-feedback"
+              >
+              </span>
+            </div>
+  
+            <label class="form-label" for="form3Example4">Password</label>
+            <div data-mdb-input-init class="form-outline mb-3">
+              <input
+                type="text"
+                formControlName="password"
+                class="form-control"
+                name="password"
+                placeholder="Enter password"
+                required=""
+                [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+              />
+              <span
+                *ngIf="submitted && f.password.errors"
+                class="invalid-feedback"
+              >
+              </span>
+            </div>
+  
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="submit" class="btn btn-primary">Update changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
