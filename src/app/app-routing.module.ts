@@ -6,6 +6,7 @@ import { ProjectsComponent } from './pages/projects/projects.component';
 import { UsersComponent } from './pages/users/users.component';
 import { BoardComponent } from './pages/board/board.component';
 import { RegisterComponent } from './Auth/register/register.component';
+import { AuthGuard } from './Shared/auth.guard';
 
 const routes: Routes = [
   {path:'',
@@ -25,15 +26,18 @@ const routes: Routes = [
     children:[
       {
         path:'project',
-        component:ProjectsComponent
+        component:ProjectsComponent,
+        
       },
       {
         path:'users',
-        component:UsersComponent
+        component:UsersComponent,
+        
       },
       {
         path:'board',
-        component:BoardComponent
+        component:BoardComponent,
+        
       }
     ]
   }

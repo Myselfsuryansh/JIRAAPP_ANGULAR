@@ -1,9 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/Shared/auth.service';
-
+function emailValidator(control: AbstractControl): { [key: string]: any } | null {
+  const email: string = control.value;
+  if (email && !email.toLowerCase().endsWith('.com')) {
+    return { 'invalidEmail': true };
+  }
+  return null;
+}
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -20,7 +26,7 @@ export class RegisterComponent implements OnInit{
   ngOnInit(): void {
     this.registerForm = this.fb.group({
       userName:['', Validators.required],
-      email:['',Validators.required],
+      email:['',Validators.required,Validators.email,emailValidator],
       password:['', Validators.required]
     })
     
